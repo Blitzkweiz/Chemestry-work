@@ -57,17 +57,27 @@ namespace Visualisation.Models
 
         public List<Radical> DegroteRadical()
         {
+            var current = (Radical)this.Clone();
             List<Radical> radicals = new List<Radical> { (Radical)this.Clone() };
-            foreach (NodeRadical node in NodeRadicals)
+            foreach (NodeRadical node in current.NodeRadicals)
             {
                 while (node.NumOfH > 0)
                 {
                     node.Degrote();
-                    Radical temp = (Radical)this.Clone();
-                    radicals.Add(temp);
+                    radicals.Add((Radical)current.Clone());
                 }
             }
             return radicals;
+        }
+
+        public bool IsDegroteOf(Radical other)
+        {
+            var degrotedRadical = DegroteRadical();
+            if(degrotedRadical.Count < 2)
+            {
+                return false;
+            }
+            return degrotedRadical[1].Equals(other);
         }
 
         public override bool Equals(object obj)

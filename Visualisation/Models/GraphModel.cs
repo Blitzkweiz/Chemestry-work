@@ -149,8 +149,8 @@ namespace Visualisation.Models
 
         private EdgeType TypeOfEdge(Vertex el1, Vertex el2)
         {
-            if ((el1.Ligand1.Equals(el2.Ligand1) && el1.Ligand2.Equals(el2.Ligand2)) ||
-                (el1.Ligand1.Equals(el2.Ligand2) && el1.Ligand2.Equals(el2.Ligand1)))
+            if ((el1.Ligand1.Equals(el2.Ligand1) && el1.Ligand2.Equals(el2.Ligand2) && (el1.Metal != el2.Metal)) ||
+                (el1.Ligand1.Equals(el2.Ligand2) && el1.Ligand2.Equals(el2.Ligand1) && (el1.Metal != el2.Metal)))
             {
                 return Enums.EdgeType.B;
             }
@@ -158,8 +158,8 @@ namespace Visualisation.Models
             {
                 if (el1.Ligand2.R1.Equals(el2.Ligand2.R1))
                 {
-                    if (el1.Ligand2.R2.DegroteRadical().Equals(el2.Ligand2.R2) ||
-                        el2.Ligand2.R2.DegroteRadical().Equals(el1.Ligand2.R2))
+                    if (el1.Ligand2.R2.IsDegroteOf(el2.Ligand2.R2) ||
+                        el2.Ligand2.R2.IsDegroteOf(el1.Ligand2.R2))
                     {
                         return Enums.EdgeType.C;
                     }
@@ -167,8 +167,8 @@ namespace Visualisation.Models
                 }
                 else if (el1.Ligand2.R2.Equals(el2.Ligand2.R2))
                 {
-                    if (el1.Ligand2.R1.DegroteRadical().Equals(el2.Ligand2.R1) ||
-                        el2.Ligand2.R1.DegroteRadical().Equals(el1.Ligand2.R1))
+                    if (el1.Ligand2.R1.IsDegroteOf(el2.Ligand2.R1) ||
+                        el2.Ligand2.R1.IsDegroteOf(el1.Ligand2.R1))
                     {
                         return Enums.EdgeType.C;
                     }
@@ -176,8 +176,8 @@ namespace Visualisation.Models
                 }
                 else if (el1.Ligand2.R1.Equals(el2.Ligand2.R2))
                 {
-                    if (el1.Ligand2.R2.DegroteRadical().Equals(el2.Ligand2.R1) ||
-                        el2.Ligand2.R1.DegroteRadical().Equals(el1.Ligand2.R2))
+                    if (el1.Ligand2.R2.IsDegroteOf(el2.Ligand2.R1) ||
+                        el2.Ligand2.R1.IsDegroteOf(el1.Ligand2.R2))
                     {
                         return Enums.EdgeType.C;
                     }
@@ -185,8 +185,8 @@ namespace Visualisation.Models
                 }
                 else if (el1.Ligand2.R2.Equals(el2.Ligand2.R1))
                 {
-                    if (el1.Ligand2.R1.DegroteRadical().Equals(el2.Ligand2.R2) ||
-                        el2.Ligand2.R2.DegroteRadical().Equals(el1.Ligand2.R1))
+                    if (el1.Ligand2.R1.IsDegroteOf(el2.Ligand2.R2) ||
+                        el2.Ligand2.R2.IsDegroteOf(el1.Ligand2.R1))
                     {
                         return Enums.EdgeType.C;
                     }
@@ -198,8 +198,8 @@ namespace Visualisation.Models
             {
                 if (el1.Ligand1.R1.Equals(el2.Ligand1.R1))
                 {
-                    if (el1.Ligand1.R2.DegroteRadical().Equals(el2.Ligand1.R2) ||
-                        el2.Ligand1.R2.DegroteRadical().Equals(el1.Ligand1.R2))
+                    if (el1.Ligand1.R2.IsDegroteOf(el2.Ligand1.R2) ||
+                        el2.Ligand1.R2.IsDegroteOf(el1.Ligand1.R2))
                     {
                         return Enums.EdgeType.C;
                     }
@@ -207,8 +207,8 @@ namespace Visualisation.Models
                 }
                 else if (el1.Ligand1.R2.Equals(el2.Ligand1.R2))
                 {
-                    if (el1.Ligand1.R1.DegroteRadical().Equals(el2.Ligand1.R1) ||
-                        el2.Ligand1.R1.DegroteRadical().Equals(el1.Ligand1.R1))
+                    if (el1.Ligand1.R1.IsDegroteOf(el2.Ligand1.R1) ||
+                        el2.Ligand1.R1.IsDegroteOf(el1.Ligand1.R1))
                     {
                         return Enums.EdgeType.C;
                     }
@@ -216,8 +216,8 @@ namespace Visualisation.Models
                 }
                 else if (el1.Ligand1.R1.Equals(el2.Ligand1.R2))
                 {
-                    if (el1.Ligand1.R2.DegroteRadical().Equals(el2.Ligand1.R1) ||
-                        el2.Ligand1.R1.DegroteRadical().Equals(el1.Ligand1.R2))
+                    if (el1.Ligand1.R2.IsDegroteOf(el2.Ligand1.R1) ||
+                        el2.Ligand1.R1.IsDegroteOf(el1.Ligand1.R2))
                     {
                         return Enums.EdgeType.C;
                     }
@@ -225,8 +225,8 @@ namespace Visualisation.Models
                 }
                 else if (el1.Ligand1.R2.Equals(el2.Ligand1.R1))
                 {
-                    if (el1.Ligand1.R1.DegroteRadical().Equals(el2.Ligand1.R2) ||
-                        el2.Ligand1.R2.DegroteRadical().Equals(el1.Ligand1.R1))
+                    if (el1.Ligand1.R1.IsDegroteOf(el2.Ligand1.R2) ||
+                        el2.Ligand1.R2.IsDegroteOf(el1.Ligand1.R1))
                     {
                         return Enums.EdgeType.C;
                     }
